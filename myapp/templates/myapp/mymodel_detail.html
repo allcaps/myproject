@@ -1,0 +1,34 @@
+{% load static %}
+<html>
+<head>
+    {% comment %}
+
+     This is a STATIC file. It lives in myproject/myapp/static/myapp/filename
+     The development server knows the project structure and will serve this for you.
+
+     In production env you need to configure the server to serve static files for you.
+     It is not pratical to expose each static folder seperately. Therefore the Django collectstatic
+     management command will copy ALL static files to ONE static directory in the root of your project.
+
+     Note: The original location of static files is myproject/myapp/static/myapp/filename (note the two times myapp).
+     The second myapp directory is to prevent clashes when running collect static.
+
+     Try it yourself:
+
+        python manage.py collectstatic
+
+    {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static "myapp/style.css" %}">
+</head>
+<body>
+    <p>object.pk: {{ object.pk }}</p>
+    <p>object.title: {{ object.title }}</p>
+    <p>object.get_absolute_url: {{ object.get_absolute_url }}</p>
+    {# File location #}
+    <p>object.image: {{ object.image }}</p>
+    {# Public url #}
+    <p>object.image.url: {{ object.image.url }}</p>
+
+    <img src="{{ object.image.url }}">
+</body>
+</html>
